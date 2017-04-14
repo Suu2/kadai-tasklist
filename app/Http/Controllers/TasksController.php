@@ -50,9 +50,15 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
+        // バリデーションを追加
+        $this->validate($request, [
+            'status' => 'required',
+        ]);
+
         /* createから送信されたページを保存するアクション追加 */
         $task = new Task;
         $task->content = $request->content;
+        $task->status = $request->status; // lesson9 10の課題で追加
         $task->save();
 
         return redirect('/');
@@ -101,9 +107,15 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // バリデーションを追加
+        $this->validate($request, [
+            'status' => 'required',
+        ]);
+
         /* editされたページのupdateアクションを追加 */
         $task = Task::find($id);
         $task->content = $request->content;
+        $task->status = $request->status; // lesson9 10の課題で追加
         $task->save();
 
         return redirect('/');
