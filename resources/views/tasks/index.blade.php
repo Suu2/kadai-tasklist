@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <div class="container">
     <h1>タスク一覧</h1>
     
     <div class="row">
@@ -28,6 +28,7 @@
     @endif
     {!! link_to_route('tasks.create', '新規タスクの投稿', null, ['class' => 'btn btn-primary']) !!}
         </div>
+    </div>
     </div>
 
 @endsection

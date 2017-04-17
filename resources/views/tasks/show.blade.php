@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <div class="container">
     <h1>id = {{ $task->id }} のタスクの詳細ページ</h1>
     
     <div class="row">
@@ -28,6 +28,7 @@
         
     {!! Form::close() !!}
         </div>
+    </div>
     </div>
 
 @endsection

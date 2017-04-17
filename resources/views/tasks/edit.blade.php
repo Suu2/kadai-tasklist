@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <div class="container">
     <h1>id:{{ $task->id }} のタスク編集ページ</h1>
     <div class="row">
         <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-6 col-sm-offset-2 col-sm-6 col-xs-12">            {!! Form::model($task, ['route' => ['tasks.update', $task->id], 'method' => 'put']) !!}
@@ -17,5 +17,6 @@
                 {!! Form::submit('更新', ['class' => 'btn btn-default']) !!}
             {!! Form::close() !!}
         </div>
+    </div>
     </div>
 @endsection
