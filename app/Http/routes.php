@@ -20,3 +20,9 @@ Route::get('/', function () {
     
     Route::resource('tasks', 'TasksController');
     
+    // ユーザー登録 追加
+    Route::get('signup', 'Auth\AuthController@getRegister')->name('signup.get');
+    Route::post('signup', 'Auth\AuthController@postRegister')->name('signup.post');
+
+
+    
