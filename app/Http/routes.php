@@ -24,8 +24,13 @@ Route::get('/', function () {
     Route::get('signup', 'Auth\AuthController@getRegister')->name('signup.get');
     Route::post('signup', 'Auth\AuthController@postRegister')->name('signup.post');
     
-    // ログイン認証 追加
+    // ログイン 追加
     Route::get('login', 'Auth\AuthController@getLogin')->name('login.get');
     Route::post('login', 'Auth\AuthController@postLogin')->name('login.post');
     Route::get('logout', 'Auth\AuthController@getLogout')->name('logout.get');
+    
+    // ログイン認証追加
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resources('users', 'UsersController', ['only' => ['index', 'show']]);
+    });
 
