@@ -14,19 +14,26 @@ class UsersController extends Controller
     public function index()
     {
         // $users = User::all(); 全件をコメントに
-        $users = User::paginate(10);
+        $users = User::paginate(1);
         
         return view('users.index', [
             'users' => $users,
         ]);
     }
-    
+
     public function show($id)
     {
         $user = User::find($id);
+        $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+        $count_tasks = $user->tasks()->count();
         
-        return view('users.show', [
+        $data = [
             'user' => $user,
-        ]);
+            'tasks' => $tasks,
+        ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.show', $data);
     }
 }

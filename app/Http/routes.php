@@ -16,9 +16,7 @@ Route::get('/', function () {
 });
 */
 
-    Route::get('/', 'TasksController@index');
-    
-    Route::resource('tasks', 'TasksController');
+    Route::get('/', 'WelcomeController@index');
     
     // ユーザー登録 追加
     Route::get('signup', 'Auth\AuthController@getRegister')->name('signup.get');
@@ -31,6 +29,7 @@ Route::get('/', function () {
     
     // ログイン認証追加
     Route::group(['middleware' => 'auth'], function () {
-        Route::resources('users', 'UsersController', ['only' => ['index', 'show']]);
+        Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+        Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
     });
 

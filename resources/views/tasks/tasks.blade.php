@@ -1,22 +1,19 @@
-@if (count($users) > 0)
 <ul class="media-list">
-@foreach ($users as $user)
+@foreach ($tasks as $task)
+    <?php $user = $task->user; ?>
     <li class="media">
-        <!--
         <div class="media-left">
             <img class="media-object img-rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
         </div>
-        -->
         <div class="media-body">
             <div>
-                {{ $user->name }}
+                {!! link_to_route('users.show', $user->name, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $task->created_at }}</span>
             </div>
             <div>
-                <p>{!! link_to_route('users.show', 'View profile', ['id' => $user->id]) !!}</p>
+                <p>{!! nl2br(e($task->content)) !!}</p>
             </div>
         </div>
     </li>
 @endforeach
 </ul>
-{!! $users->render() !!}
-@endif
+{!! $tasks->render() !!}
