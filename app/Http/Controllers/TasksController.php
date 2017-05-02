@@ -16,24 +16,26 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /* lesson12の9の課題でコメントに
     public function index()
     {
-        /* 一覧表示(index)の追加 */
+         一覧表示(index)の追加 
         $tasks = Task::all();
         
         return view('tasks.index', [
             'tasks' => $tasks
             ]);
     }
-
+    */
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+    /* lesson12 9の課題でコメントに
     public function create()
     {
-        /* 新規作成ページ追加 */
+         新規作成ページ追加 
         $task = new Task;
 
         return view('tasks.create', [
@@ -41,7 +43,7 @@ class TasksController extends Controller
         ]);
 
     }
-
+    */
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +56,10 @@ class TasksController extends Controller
         $this->validate($request, [
             'status' => 'required',
         ]);
-
+        $this->validate($request, [
+            'content' => 'requred|max255',
+        ]);
+        
         /* createから送信されたページを保存するアクション追加 */
         $task = new Task;
         $task->content = $request->content;
@@ -71,25 +76,27 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /* lesson12 9の課題でコメントに
     public function show($id)
     {
-        /* 詳細ページ表示 */
+         詳細ページ表示 
         $task = Task::find($id);
         
         return view('tasks.show', [
             'task' => $task,
         ]);
     }
-
+    */
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /* lesson12 9の課題でコメントに
     public function edit($id)
     {
-        /* 既存レコード編集画面追加 */
+         既存レコード編集画面追加 
         $task = Task::find($id);
 
         return view('tasks.edit', [
@@ -97,7 +104,7 @@ class TasksController extends Controller
         ]);
 
     }
-
+    */
     /**
      * Update the specified resource in storage.
      *
@@ -105,14 +112,15 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /* lesson12 9の課題でコメントに
     public function update(Request $request, $id)
     {
-        // バリデーションを追加
+         バリデーションを追加
         $this->validate($request, [
             'status' => 'required',
         ]);
 
-        /* editされたページのupdateアクションを追加 */
+         editされたページのupdateアクションを追加 
         $task = Task::find($id);
         $task->content = $request->content;
         $task->status = $request->status; // lesson9 10の課題で追加
@@ -121,7 +129,7 @@ class TasksController extends Controller
         return redirect('/');
 
     }
-
+    */
     /**
      * Remove the specified resource from storage.
      *
@@ -132,9 +140,12 @@ class TasksController extends Controller
     {
         /* 削除ページのアクションを追加 */
         $task = Task::find($id);
-        $task->delete();
-
-        return redirect('/');
+        
+        if (\Auth::user()->id === $task->user_id) {
+            $task->delete();    
+        }
+        
+        return redirect()->back();
 
     }
 }
