@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Task; /* index追加時追加 */
+use App\User; /* lesson12 9の課題で外部キー設定した関係で追加 */
 
 class TasksController extends Controller
 {
@@ -53,17 +54,15 @@ class TasksController extends Controller
     public function store(Request $request)
     {
         // バリデーションを追加
+        echo '01';
         $this->validate($request, [
-            'status' => 'required',
+            'content' => 'required|max:255',
         ]);
-        $this->validate($request, [
-            'content' => 'requred|max255',
-        ]);
-        
+
         /* createから送信されたページを保存するアクション追加 */
         $task = new Task;
         $task->content = $request->content;
-        $task->status = $request->status; // lesson9 10の課題で追加
+        $task->user_id = \Auth::user()->id;
         $task->save();
 
         return redirect('/');
