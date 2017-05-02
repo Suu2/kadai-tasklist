@@ -44,6 +44,7 @@ class TasksController extends Controller
         ]);
 
     }
+    
     */
     /**
      * Store a newly created resource in storage.
@@ -58,12 +59,22 @@ class TasksController extends Controller
         $this->validate($request, [
             'content' => 'required|max:255',
         ]);
-
+        
         /* createから送信されたページを保存するアクション追加 */
+
+        echo '02';
+        $request->user()->tasks->create([
+            'content' => $request->content,
+
+            'user_id' => \Auth::user()->id
+        ]);
+        echo '03';
+        /*
         $task = new Task;
         $task->content = $request->content;
         $task->user_id = \Auth::user()->id;
         $task->save();
+        */
 
         return redirect('/');
 
