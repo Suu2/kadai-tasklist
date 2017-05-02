@@ -63,20 +63,20 @@ class TasksController extends Controller
         /* createから送信されたページを保存するアクション追加 */
 
         echo '02';
-        
+        /*
         $request->user()->tasks->create([
             'content' => $request->content,
             'user_id' => \Auth::user()->id,
         ]);
-        
+        */
         
         echo '03';
-        /*
+        
         $task = new Task;
         $task->content = $request->content;
         $task->user_id = \Auth::user()->id;
         $task->save();
-        */
+        
 
         return redirect('/');
 
