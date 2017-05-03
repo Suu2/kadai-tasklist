@@ -8,6 +8,7 @@
                 {!! Form::open(['route' => 'tasks.store']) !!}
                     <div class="from-group">
                         {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'row' => '5']) !!}
+                        {!! Form::text('status', old('status'), ['class' => 'form-control']) !!}
                     </div>
                     {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
                 {!! Form::close() !!}
