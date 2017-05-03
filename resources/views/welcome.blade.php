@@ -6,10 +6,16 @@
         <div class="row">
             <aside class="col-md-4">
                 {!! Form::open(['route' => 'tasks.store']) !!}
-                    <div class="from-group">
-                        {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'row' => '5']) !!}
-                        {!! Form::text('status', old('status'), ['class' => 'form-control']) !!}
-                    </div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            {!! Form::label('toukou', '投稿 ') !!}
+                            {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'row' => '5']) !!}
+                        </div>
+                        <div class="from-group">
+                            {!! Form::label('status', 'status ') !!}
+                            {!! Form::text('status', old('status'), ['class' => 'form-control']) !!}
+                        </div>
+                    </form>
                     {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
                 {!! Form::close() !!}
             </aside>
