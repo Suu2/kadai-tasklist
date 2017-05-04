@@ -8,13 +8,13 @@
                 {!! Form::open(['route' => 'tasks.store']) !!}
                     <div class="form-group">
                         {!! Form::label('toukou', ' 投稿  ') !!}
-                        {!! Form::textarea('content', old('content'), ['cols' => '40']) !!}
+                        {!! Form::textarea('content', old('content'), ['cols' => '40', 'rows' => '8']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('status', 'status ') !!}
-                        {!! Form::text('status', old('status')) !!}
+                        {!! Form::text('status', old('status'), ['size' => '35', 'width' => '80px']) !!}
                     </div>
-                    {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
+                    {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block', 'size' => '35', 'width' => '80px']) !!}
                 {!! Form::close() !!}
             </aside>
             <div class="col-xs-8">
